@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+</head>
+
+<body>
+    <!-- 1. User selects r, p, or s
+2. Computer makes choice
+3. Capture choices
+4. Compare choices, determine win, loss or tie
+5. Display result to user -->
+
+<div id = "game">
+    <p>Press r, p, or s to play Rock, Paper, Scissors</p>
+</div>
+
+<script type="Text/javascript">
+
+    //Create an array of options for the computer to chose from
+    var options = ["r", "p", "s"];
+
+    //Create variables to store all the info from rounds
+    var wins = 0;
+    var losses = 0;
+    var ties = 0;
+
+    // This checks what the user is pressing 
+        document.onkeyup = function() {
+            var userguess = String.fromCharCode(event.keyCode).toLowerCase();
+
+            var computerGuess = options[Math.floor(Math.random()*options.length)];
+
+            if (userguess =="r" || userguess =="p" || userguess =="s"){
+                if((userguess==computerGuess)){
+                    ties++;
+                }
+                if(((userguess=="r")&&(computerGuess=="p")) || ((userguess=="p")&&(computerGuess=="s"))|| ((userguess=="s")&&(computerGuess=="r"))){
+                    losses++;
+                }
+                if(((userguess=="r")&&(computerGuess=="s"))||((userguess=="p")&&(computerGuess=="r"))|| ((userguess=="s")&&(computerGuess=="p"))){
+                    wins++;
+                }
+            }else{
+                    alert("Please chose r, p, or s");
+                }
+        
+            //used html inside quotes and concatenation for variables
+            var html = "<p>Press r, p, or s to start playing<p>" + 
+            "<p>wins: " + wins + "</p>" + 
+            "<p>losses: " + losses + "</p>" + 
+            "<p>ties: " + ties + "</p>";
+
+            document.querySelector('#game').innerHTML = html;
+
+    }
+
+    /*Use document.onkeyup function to check if the user is pressing anything. When a key is pressed an alert pops up saying "wrking"
+    document.onkeyup = function() {
+        alert("working");
+    } */
+</script>
+
+</body>
+
+</html>
